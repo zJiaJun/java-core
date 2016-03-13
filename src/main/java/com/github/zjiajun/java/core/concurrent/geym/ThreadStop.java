@@ -1,7 +1,5 @@
 package com.github.zjiajun.java.core.concurrent.geym;
 
-import java.util.concurrent.TimeUnit;
-
 /**
  * Created by zhujiajun
  * 16/3/13 13:46
