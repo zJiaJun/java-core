@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by zhujiajun
@@ -17,11 +19,11 @@ public class MultiThreadDownload {
     private static final String DOWNLOAD_PATH =
         /*
         md5
-        531a13ce63cfe35e708d8bd660a6fd2b *apache-tomcat-8.0.24.zip
+        98e821d2755ae3f8e6d66536fcdaa1b0 *apache-tomcat-8.0.32.tar.gz
         sha1
-        499d84d2181a57dc3c394ae9cc651a37a20f71fa *apache-tomcat-8.0.24.zip
+        d063269b5fe67c312f8b50106d94aa8d80505582 *apache-tomcat-8.0.32.tar.gz
          */
-        "http://mirror.nus.edu.sg/apache/tomcat/tomcat-8/v8.0.24/bin/apache-tomcat-8.0.24.zip"; //9,682,439 Byte
+        "http://mirrors.cnnic.cn/apache/tomcat/tomcat-8/v8.0.32/bin/apache-tomcat-8.0.32.tar.gz"; //8594 kb
 
     //线程数量
     private static final int THREAD_NUM = 4;
@@ -43,11 +45,12 @@ public class MultiThreadDownload {
 
             int block = fileSize / THREAD_NUM; //文件大小除以线程数量,相当于每个线程下载多少块内容
             System.out.println(THREAD_NUM + "个线程下载,每个线程下载: " + block / 1024 + "KB");
+            ExecutorService threadPool = Executors.newFixedThreadPool(THREAD_NUM);
             for (int threadId = 1; threadId <= THREAD_NUM; threadId++) {
-                new Thread(new DownloadThread(url,fileSize,block,threadId,file)).start();
+                threadPool.execute(new DownloadThread(url,fileSize,block,threadId,file));
             }
+            threadPool.shutdown();
         }
-
     }
 
 
