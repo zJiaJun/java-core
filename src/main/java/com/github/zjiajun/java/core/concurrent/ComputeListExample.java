@@ -7,6 +7,11 @@ import java.util.concurrent.*;
 /**
  * Created by zhujiajun
  * 16/4/12 11:54
+ *
+ * 初始化N条数据,格式为List<String> string_n
+ * 分区List, 提交线程池执行,转换为n_string
+ * 添加到最终List中
+ *
  */
 public class ComputeListExample {
 
