@@ -2,7 +2,6 @@ package com.github.zjiajun.java.core.concurrent;
 
 import java.util.*;
 import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by zhujiajun
@@ -32,9 +31,8 @@ public class ComputeMapExample {
 
     private ConcurrentHashMap<String,MapValue> resultMap = new ConcurrentHashMap<>();
     private CountDownLatch cdl = new CountDownLatch(2);
-    private AtomicInteger flag = new AtomicInteger(1);
 
-    static class MapValue {
+    class MapValue {
         private String name;
         private long imp;
         private long clk;
@@ -81,11 +79,10 @@ public class ComputeMapExample {
 
     public void executeTask(List<List<String>> datas) {
         for (final List<String> data : datas) {
+            ConcurrentHashMap<String,MapValue> map = new ConcurrentHashMap<>();
             threadPoolExecutor.execute(new Runnable() {
-
                 @Override
                 public void run() {
-                    Map<String,MapValue> map = new HashMap<>();
                     for (String line : data) {
                         String[] split = line.split(":");
                         int hour = Integer.parseInt(split[1]) == 0 ? 24 : Integer.parseInt(split[1]);
@@ -102,16 +99,26 @@ public class ComputeMapExample {
                         }
                         map.put(key,value);
                     }
-                    /* this is problem;这里2个线程,会覆盖resultMap中的数据 */
-//                    resultMap.putAll(map);
 
-                    for (String key : map.keySet()) {
-                        MapValue value = map.get(key);
-                        resultMap.put(key + "_" + flag.getAndIncrement(),value);
-                    }
+                    /* this is problem;这里2个线程,会覆盖resultMap中的数据 */
+//                    resultMap.putAll(resultMap);
+
+                    lockMap(map);
                     cdl.countDown();
                 }
             });
+        }
+    }
+
+    public synchronized void lockMap(ConcurrentHashMap<String, MapValue> map) {
+        for (Map.Entry<String, MapValue> next : map.entrySet()) {
+            MapValue oldValue = resultMap.get(next.getKey());
+            if (oldValue == null) {
+                oldValue = new MapValue();
+            }
+            oldValue.setImp(oldValue.getImp() + next.getValue().getImp());
+            oldValue.setClk(oldValue.getClk() + next.getValue().getClk());
+            resultMap.put(next.getKey(), oldValue);
         }
     }
 
@@ -122,9 +129,8 @@ public class ComputeMapExample {
         mapExample.cdl.await();
 
         for (Map.Entry<String, MapValue> entry1 : mapExample.resultMap.entrySet()) {
-          //handler resultMap how?
+            System.out.println("entry1:" + entry1);
         }
-
         mapExample.threadPoolExecutor.shutdown();
 
     }
