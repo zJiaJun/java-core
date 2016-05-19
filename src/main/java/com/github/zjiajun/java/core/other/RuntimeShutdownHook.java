@@ -33,12 +33,6 @@ public class RuntimeShutdownHook {
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
-//                executorService.shutdown();
-                try {
-                    executorService.awaitTermination(3,TimeUnit.SECONDS);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
                 System.out.println("Shutdown hook");
             }
         });
@@ -50,6 +44,8 @@ public class RuntimeShutdownHook {
         hook.doWork();
         hook.register();
         System.out.println("Last program line");
-        System.exit(0);
+        hook.executorService.shutdown();//线程池关闭才会触发shutdownHook
+        hook.executorService.awaitTermination(1,TimeUnit.SECONDS);
+
     }
 }
