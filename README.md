@@ -2,7 +2,10 @@
 
 - algorithm
     - [一致性Hash算法实现](https://github.com/zJiaJun/java-core/blob/master/src/main/java/com/github/zjiajun/java/core/algorithm/consistent/ConsistentHash.java)
-
+- annotation
+    - 注解的使用,[注解全面解析](http://9leg.com/java/2016/01/21/java-annotation.html)
+- classloader
+    - ClassLoaderInheritance,类加载器层级关系说明
 - concurrent
     - entry2master是Java并发编程从入门到精通一书的代码练习
     - DeathLockExample 死锁例子
@@ -18,11 +21,19 @@
     - PauseThreadPoolTestMain 暂停线程池测试
     - SemaphoreExample 信号量例子
 
+- jvm
+    - EdenNoSpaceMinorGC,eden区没有空间,触发minorGC
+    - OutOfMemoryErrorExample
+
 - design
 
 - java8
     - LambdaExample
     - StreamExample
     - InterfaceExample
+
+- reflection
+    - ArrayReflection,关于数组反射
+    - ConstructorInvoke 构造器调用创建对象
 
 持续补充...
