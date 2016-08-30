@@ -24,5 +24,8 @@ public class QinghuaTest {
         s0 = s0 + s1;
         System.out.println(s0);//nullnull
 
+        System.out.println(s1 == null);
+        System.out.println(s0 == null);
+        System.out.println(s0.equals("nullnull"));
     }
 }
