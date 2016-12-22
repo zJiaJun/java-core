@@ -4,4 +4,4 @@
  *
  * 认识Java里面的Thread
  */
-package com.github.zjiajun.java.core.concurrent.entry2master.charpter2;
+package com.github.zjiajun.java.core.concurrent.book2.charpter2;

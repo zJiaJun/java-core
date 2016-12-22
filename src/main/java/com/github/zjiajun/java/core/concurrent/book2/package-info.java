@@ -4,4 +4,4 @@
  *
  *  Java并发编程从入门到精通
  */
-package com.github.zjiajun.java.core.concurrent.entry2master;
+package com.github.zjiajun.java.core.concurrent.book2;

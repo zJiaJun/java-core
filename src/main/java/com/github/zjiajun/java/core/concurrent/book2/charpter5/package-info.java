@@ -4,4 +4,4 @@
  *
  * BlockQueue 相关
  */
-package com.github.zjiajun.java.core.concurrent.entry2master.charpter5;
+package com.github.zjiajun.java.core.concurrent.book2.charpter5;

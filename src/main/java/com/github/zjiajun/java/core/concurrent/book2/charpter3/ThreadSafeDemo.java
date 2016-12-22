@@ -1,4 +1,4 @@
-package com.github.zjiajun.java.core.concurrent.entry2master.charpter3;
+package com.github.zjiajun.java.core.concurrent.book2.charpter3;
 
 /**
  * Created by zhujiajun

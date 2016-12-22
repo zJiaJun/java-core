@@ -1,4 +1,4 @@
-package com.github.zjiajun.java.core.concurrent.entry2master.charpter2;
+package com.github.zjiajun.java.core.concurrent.book2.charpter2;
 
 import com.github.zjiajun.java.core.util.typedef.U;
 
