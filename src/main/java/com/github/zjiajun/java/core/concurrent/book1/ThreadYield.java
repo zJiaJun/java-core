@@ -6,7 +6,7 @@ package com.github.zjiajun.java.core.concurrent.book1;
  */
 public class ThreadYield {
 
-    private void yiedld() {
+    private void yield() {
         Thread thread = new Thread(() -> {
             long t1 = System.currentTimeMillis();
             int count = 0;
@@ -22,7 +22,7 @@ public class ThreadYield {
 
     public static void main(String[] args) {
         ThreadYield threadYield = new ThreadYield();
-        threadYield.yiedld();
+        threadYield.yield();
 
     }
 }
