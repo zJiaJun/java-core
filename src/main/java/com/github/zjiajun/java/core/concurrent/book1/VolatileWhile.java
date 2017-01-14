@@ -6,18 +6,16 @@ package com.github.zjiajun.java.core.concurrent.book1;
  */
 public class VolatileWhile implements Runnable {
 
-    private volatile boolean isRunning = true;
+    private boolean isRunning = true;
+
+    public void stop() {
+        isRunning = false;
+    }
 
     @Override
     public void run() {
         System.out.println("begin run");
         while (isRunning) {
-            System.out.println("running");
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
 
         }
         System.out.println("end run");
@@ -30,7 +28,6 @@ public class VolatileWhile implements Runnable {
         t1.start();
         System.out.println("stop thread");
         Thread.sleep(3000);
-        volatileWhile.isRunning = false;
-
+        volatileWhile.stop();
     }
 }
