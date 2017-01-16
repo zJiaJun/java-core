@@ -7,10 +7,26 @@ package com.github.zjiajun.java.core.concurrent.book1;
 public class SyncLook {
 
     private static class Service {
-        private boolean isRunning = true;
+        private boolean isRunning = true;//volatile
 
         public void runMethod() {
+            /**
+             * https://www.zhihu.com/question/39458585/answer/81521474
+             *
+             * while 循环会被JIT编译器优化
+             *
+             * 读取isRunning变量的操作提示到循环外
+             * boolean hoistedIsRunning = isRunning;
+             *
+             * while(hoistedIsRunning) {}
+             *
+             */
             while (isRunning) {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
             }
             System.out.println("Stop!!!");

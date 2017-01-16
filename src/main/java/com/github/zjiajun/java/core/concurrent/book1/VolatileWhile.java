@@ -6,7 +6,7 @@ package com.github.zjiajun.java.core.concurrent.book1;
  */
 public class VolatileWhile implements Runnable {
 
-    private boolean isRunning = true;
+    private boolean isRunning = true;////volatile
 
     public void stop() {
         isRunning = false;
