@@ -21,7 +21,7 @@ public class ThreadCallBack {
 
             }
         });
-        System.out.println(str[0]);
+        System.out.println(str[0]);//null
     }
 
     private static void runThreadCallBack(final CallbackListener callbackListener) {
