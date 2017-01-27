@@ -3,6 +3,8 @@ package com.github.zjiajun.java.core.other;
 /**
  * @author zhujiajun
  * @since 16/8/29
+ *
+ * 清华大学一个java考试题目
  */
 public class QinghuaTest {
 
