@@ -1,4 +1,4 @@
-package com.github.zjiajun.java.core.readfile;
+package com.github.zjiajun.java.core.io;
 
 import java.io.*;
 import java.nio.file.Files;
