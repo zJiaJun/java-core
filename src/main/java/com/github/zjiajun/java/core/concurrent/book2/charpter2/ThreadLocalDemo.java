@@ -48,7 +48,7 @@ public class ThreadLocalDemo {
         @Override
         public void run() {
             for (int i = 0; i < 3; i++) {
-                System.out.println("thread : [" + U.getCurrentThreadName() + "]" + " seqNum : [" + threadLocalExample.getNextNum() +"]");
+                System.out.println("thread : [" + U.currentThreadName() + "]" + " seqNum : [" + threadLocalExample.getNextNum() +"]");
             }
             threadLocalExample.getThreadLocal().remove();
         }

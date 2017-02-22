@@ -6,15 +6,19 @@ package com.github.zjiajun.java.core.util;
  */
 public class Utils {
 
-    public static Thread getCurrentThread() {
+    public static Thread currentThread() {
         return Thread.currentThread();
     }
 
-    public static String getCurrentThreadName() {
-        return getCurrentThread().getName();
+    public static String currentThreadName() {
+        return currentThread().getName();
     }
 
-    public static long getCurrentThreadId() {
-        return getCurrentThread().getId();
+    public static long currentThreadId() {
+        return currentThread().getId();
+    }
+
+    public static long currentTimeMillis() {
+        return System.currentTimeMillis();
     }
 }
