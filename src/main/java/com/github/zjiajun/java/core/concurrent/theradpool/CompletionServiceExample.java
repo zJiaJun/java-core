@@ -53,7 +53,7 @@ public class CompletionServiceExample {
         }
         executor.shutdown();
 
-        while (!executor.awaitTermination(5,TimeUnit.MINUTES)) {
+        while (!executor.isTerminated()) {
 
         }
 
@@ -76,7 +76,7 @@ public class CompletionServiceExample {
 
         executor.shutdown();
 
-        while (!executor.awaitTermination(5,TimeUnit.MINUTES)) {
+        while (!executor.isTerminated()) {
 
         }
     }
