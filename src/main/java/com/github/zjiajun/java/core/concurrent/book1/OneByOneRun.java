@@ -8,7 +8,7 @@ public class OneByOneRun {
 
     private volatile boolean prevIsA = false;
 
-    public synchronized void backupA() {
+    private synchronized void backupA() {
         try {
             while (prevIsA) {
                 wait();
@@ -23,7 +23,7 @@ public class OneByOneRun {
         }
     }
 
-    public synchronized void backupB() {
+    private synchronized void backupB() {
         try {
             while (!prevIsA) {
                 wait();
