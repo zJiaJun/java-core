@@ -50,7 +50,7 @@ public class CompletionServiceExample {
         executor.shutdown();
 
         while (!executor.isTerminated()) {
-
+            TimeUnit.SECONDS.sleep(3);
         }
 
     }
@@ -73,7 +73,7 @@ public class CompletionServiceExample {
         executor.shutdown();
 
         while (!executor.isTerminated()) {
-
+            TimeUnit.SECONDS.sleep(3);
         }
     }
 }
