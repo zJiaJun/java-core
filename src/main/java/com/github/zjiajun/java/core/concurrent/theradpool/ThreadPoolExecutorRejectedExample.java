@@ -11,15 +11,12 @@ public class ThreadPoolExecutorRejectedExample {
 
     private void doWork(ExecutorService executorService) {
         for (int i = 0; i < 11; i++) {
-            executorService.submit(new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println("Thread name :" + Thread.currentThread().getName());
-                    try {
-                        TimeUnit.SECONDS.sleep(1);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+            executorService.submit(() -> {
+                System.out.println("Thread name :" + Thread.currentThread().getName());
+                try {
+                    TimeUnit.SECONDS.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             });
         }
