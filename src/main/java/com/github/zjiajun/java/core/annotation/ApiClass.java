@@ -1,6 +1,5 @@
 package com.github.zjiajun.java.core.annotation;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
