@@ -11,14 +11,17 @@ import java.net.Socket;
  */
 public class TraditionalServer {
 
+
+    private static final int BUFFER_SIZE = 4096;
+
     public static void main(String[] args) throws IOException {
         ServerSocket serverSocket = new ServerSocket(8000);
         while (true) {
             Socket socket = serverSocket.accept();
             DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
-            byte [] buffer = new byte[1024 * 4];
+            byte [] buffer = new byte[BUFFER_SIZE];
             while (true) {
-                int nread = dataInputStream.read(buffer , 0, 4096);
+                int nread = dataInputStream.read(buffer , 0, BUFFER_SIZE);
                 if (0 == nread)
                     break;
             }
