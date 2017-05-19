@@ -22,7 +22,7 @@ public class MemoryAllocateExample {
      * -XX:+PrintGCTimeStamps
      *
      * @param args args
-     * @throws InterruptedException
+     * @throws InterruptedException exception
      */
     public static void main(String[] args) throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
