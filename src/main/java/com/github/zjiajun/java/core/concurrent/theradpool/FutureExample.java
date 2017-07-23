@@ -32,7 +32,8 @@ public class FutureExample {
             }
         });
         futureList.add(submit20);
-        futureList.add(submit5);//5s 即使完成了，还要等待20s的任务完成才返回
+        futureList.add(submit5);//5s 即使完成了，还要等待20s的任务完成才返回,可以使用CompletionService
+
 
 
         for (Future<String> stringFuture : futureList) {
