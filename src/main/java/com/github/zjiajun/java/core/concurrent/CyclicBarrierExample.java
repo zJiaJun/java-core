@@ -24,6 +24,7 @@ public class CyclicBarrierExample {
 
     private void barrierAwait() {
         try {
+            TimeUnit.SECONDS.sleep(2);
             cyclicBarrier.await(3, TimeUnit.SECONDS);
             System.out.println(Thread.currentThread().getName() + " 全部线程到达屏障,继续执行");
         } catch (InterruptedException | BrokenBarrierException | TimeoutException e) {
@@ -35,6 +36,9 @@ public class CyclicBarrierExample {
         String threadName = Thread.currentThread().getName();
         System.out.println(threadName + " 开始执行");
         CyclicBarrierExample cyclicBarrierExample = new CyclicBarrierExample();
+        cyclicBarrierExample.work1Start();
+        cyclicBarrierExample.work2Start();
+
         cyclicBarrierExample.work1Start();
         cyclicBarrierExample.work2Start();
 
