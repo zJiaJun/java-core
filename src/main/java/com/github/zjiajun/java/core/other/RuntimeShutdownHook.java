@@ -27,12 +27,7 @@ public class RuntimeShutdownHook {
     }
 
     public void register() {
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            @Override
-            public void run() {
-                System.out.println("Shutdown hook");
-            }
-        });
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> System.out.println("Shutdown hook")));
         System.out.println("Register shutdown hook");
     }
 
