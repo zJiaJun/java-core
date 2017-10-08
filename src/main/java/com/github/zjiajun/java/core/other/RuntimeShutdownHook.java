@@ -15,16 +15,13 @@ public class RuntimeShutdownHook {
 
     public void doWork() {
         for (int i = 0; i < 5;i++) {
-            executorService.submit(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        TimeUnit.SECONDS.sleep(3);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    System.out.println("Work finished");
+            executorService.submit(() -> {
+                try {
+                    TimeUnit.SECONDS.sleep(3);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
+                System.out.println("Work finished");
             });
         }
     }
