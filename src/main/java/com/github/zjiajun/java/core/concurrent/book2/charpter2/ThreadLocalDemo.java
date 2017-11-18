@@ -10,12 +10,7 @@ import com.github.zjiajun.java.core.util.typedef.U;
  */
 public class ThreadLocalDemo {
 
-    private static ThreadLocal<Integer> seqNum = new ThreadLocal<Integer>() {
-        @Override
-        protected Integer initialValue() {
-            return 0;
-        }
-    };
+    private static ThreadLocal<Integer> seqNum = ThreadLocal.withInitial(() -> 0);
 
     public ThreadLocal<Integer> getThreadLocal() {
         return seqNum;
