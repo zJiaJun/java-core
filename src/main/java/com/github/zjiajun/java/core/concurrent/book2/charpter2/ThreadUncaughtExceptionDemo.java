@@ -26,9 +26,9 @@ public class ThreadUncaughtExceptionDemo implements Runnable {
             System.err.println("Stack trace : ");
             e.printStackTrace(System.err);
             System.err.println("Thread status : " + t.getState());
-            Thread thread = new Thread(new ThreadUncaughtExceptionDemo());
-            thread.setUncaughtExceptionHandler(new ExceptionHandler());
-            thread.start();
+//            Thread thread = new Thread(new ThreadUncaughtExceptionDemo());
+//            thread.setUncaughtExceptionHandler(new ExceptionHandler());
+//            thread.start();
         }
     }
 
