@@ -27,7 +27,7 @@ public class Node {
 
     @Override
     public String toString() {
-        return name + ip;
+        return name + ":"+ ip;
     }
 
 }

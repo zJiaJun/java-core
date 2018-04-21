@@ -16,7 +16,7 @@ public class TestConsistentHash {
         ArrayList<Node> nodes = new ArrayList<>();
         for (int i = 1; i <= 10; i++) {
             map.put(ip + i,0);
-            Node node = new Node("node" + 0,ip + i);
+            Node node = new Node("node" + i,ip + i);
             nodes.add(node);
         }
 
