@@ -28,7 +28,6 @@ public class SimpleVMArg {
      */
     public static void main(String[] args) throws InterruptedException {
         demo();
-//        new CountDownLatch(1).await();
     }
 
     private static void demo() {
