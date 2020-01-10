@@ -3,6 +3,7 @@ package com.github.zjiajun.java.core.concurrent.theradpool;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.*;
 
 /**
@@ -15,7 +16,11 @@ public class CompletionServiceExample {
 
         @Override
         public String call() throws Exception {
-            return Thread.currentThread().getName();
+            int sleepSeconds = new Random().nextInt(10);
+            String msg = String.format("sleep %d s", sleepSeconds);
+            System.out.println(msg);
+            TimeUnit.SECONDS.sleep(sleepSeconds);
+            return Thread.currentThread().getName() + " " + msg;
         }
     }
 
@@ -23,7 +28,7 @@ public class CompletionServiceExample {
         try {
             normalExecutorService();
             completionExecutorService();
-        } catch (InterruptedException | ExecutionException | TimeoutException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -39,7 +44,7 @@ public class CompletionServiceExample {
         while (numThread > 0) {
             for (Iterator<Future<String>> it = futureList.iterator();it.hasNext();) {
                 Future<String> future = it.next();
-                String result = future.get(0, TimeUnit.SECONDS);
+                String result = future.get(20, TimeUnit.SECONDS);
                 if (null != result) {
                     it.remove();
                     numThread--;

@@ -1,6 +1,5 @@
 package com.github.zjiajun.java.core.jvm;
 
-import java.util.concurrent.CountDownLatch;
 
 /**
  * Created by zhujiajun
