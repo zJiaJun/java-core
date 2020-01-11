@@ -15,7 +15,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  */
 public class ReentrantReadWriteLockDemo {
 
-    class Count {
+    static class Count {
 
         final ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
         final Lock readLock = readWriteLock.readLock();     //得到一个可被多个读操作共用的读锁,但它会排斥所有写操作
@@ -51,7 +51,7 @@ public class ReentrantReadWriteLockDemo {
     }
 
     public static void main(String[] args) {
-        final Count count = new ReentrantReadWriteLockDemo().new Count();
+        final Count count = new Count();
         for (int i = 0; i < 2; i++)
             new Thread(count::get,"threadRead_" + i).start();
 

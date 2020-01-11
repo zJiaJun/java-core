@@ -10,7 +10,7 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class ReentrantLockDemo {
 
-    class Count {
+    static class Count {
 
         final ReentrantLock lock = new ReentrantLock();
 
@@ -43,7 +43,7 @@ public class ReentrantLockDemo {
         }
     }
     public static void main(String[] args) {
-        final Count count = new ReentrantLockDemo().new Count();
+        final Count count = new Count();
         for (int i = 0;i < 2;i++)
            new Thread(count::get, "threadGet_" + i).start();
 
