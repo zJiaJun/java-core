@@ -40,6 +40,6 @@ public class Interrupted {
         System.out.println(sleepThread.getName() + " is " + sleepThread.isInterrupted());
         System.out.println(busyThread.getName() + " is " + busyThread.isInterrupted());
 
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(10);
     }
 }
