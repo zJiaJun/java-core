@@ -40,7 +40,7 @@ public class PathClassLoader extends ClassLoader {
             }
             return baos.toByteArray();
         } catch (Exception e) {
-
+            //ignore
         }
         return null;
     }
