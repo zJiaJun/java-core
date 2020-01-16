@@ -8,9 +8,6 @@ package com.github.zjiajun.java.core.algorithm.bloomfilter;
 public class TestBloomFilter {
 
     public static void main(String[] args) {
-//        HugeFilter filter = new NormalFilter(HugeFilter.SIZE_OF_1KW);
-//        System.out.println(filter.contains(876));
-
         HugeFilter filter = new SimpleBloomFilter(HugeFilter.SIZE_OF_1KW, HugeFilter.SIZE_OF_1KW);
         System.out.println(filter.contains(19427261));
 
