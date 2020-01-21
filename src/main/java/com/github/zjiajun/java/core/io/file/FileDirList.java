@@ -23,8 +23,9 @@ public class FileDirList {
             }
         });
 
-        for (File s : jlist)
+        for (File s : jlist) {
             System.out.println(s);
+        }
 
         Store dirsAndFiles = getDirsAndFiles(".");
         dirsAndFiles.dirs.forEach(System.out::println);
