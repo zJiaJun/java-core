@@ -16,12 +16,7 @@ public class FileDirList {
         for (String s : list)
             System.out.println(s);
 
-        File [] jlist = file.listFiles(new FilenameFilter() {
-            @Override
-            public boolean accept(File dir, String name) {
-                return name.equals("pom.xml");
-            }
-        });
+        File [] jlist = file.listFiles((dir, name) -> name.equals("pom.xml"));
 
         for (File s : jlist) {
             System.out.println(s);
