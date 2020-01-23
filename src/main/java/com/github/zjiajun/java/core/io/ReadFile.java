@@ -15,7 +15,7 @@ import java.util.stream.Stream;
  */
 public class ReadFile {
 
-    private static final String FILE_NAME = "/Users/zhujiajun/Work/ideaProjects/java-core/src/main/resources/lines.txt";
+    private static final String FILE_NAME = "/Users/zhujiajun/IdeaProjects/github/java-core/src/main/resources/lines.txt";
 
     public static void main(String[] args) {
         System.out.println("Stream");
