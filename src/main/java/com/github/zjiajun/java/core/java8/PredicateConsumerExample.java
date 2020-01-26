@@ -21,7 +21,7 @@ public class PredicateConsumerExample {
         }
 
         public void printFee() {
-            Double newFee = baseFee - (baseFee * feeDiscount / 100);
+            double newFee = baseFee - (baseFee * feeDiscount / 100);
             System.out.println("Discount " + newFee);
         }
     }
