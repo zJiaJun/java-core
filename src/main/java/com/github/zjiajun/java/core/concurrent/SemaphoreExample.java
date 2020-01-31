@@ -13,16 +13,16 @@ public class SemaphoreExample {
     public static void main(String[] args) {
         final Semaphore semaphore = new Semaphore(3); //一次只允许3人访问
         for (int i = 0;i < 10;i++) {
-            final int finalI = i;
+            final int x = i;
             new Thread(() -> {
                 try {
-                    System.out.println("用户" + finalI + "连接上了");
+                    System.out.println("用户" + x + "连接上了");
                     Thread.sleep(300);
                     semaphore.acquire(); //获取许可
-                    System.out.println("用户" + finalI + "开始访问后台程序");
+                    System.out.println("用户" + x + "开始访问后台程序");
                     Thread.sleep(500); //模仿用户访问后台过程
                     semaphore.release();//释放允许下一个线程访问进入后台
-                    System.out.println("用户" + finalI + "访问结束。");
+                    System.out.println("用户" + x + "访问结束。");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
