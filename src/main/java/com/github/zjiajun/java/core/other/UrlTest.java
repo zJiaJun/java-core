@@ -22,9 +22,9 @@ public class UrlTest {
 
         Map<String,String> map = new HashMap<>();
         if (query != null && query.length() > 0) {
-            String[] split = query.split("&");
+            String [] split = query.split("&");
             for (String param: split) {
-                String[] split1 = param.split("=");
+                String [] split1 = param.split("=");
                 if (split1.length == 2) {
                     map.put(split1[0],split1[1]);
                 }
