@@ -1,6 +1,8 @@
 package com.github.zjiajun.java.core.classloader;
 
 import com.sun.nio.zipfs.ZipInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by zhujiajun
@@ -18,28 +20,30 @@ import com.sun.nio.zipfs.ZipInfo;
  */
 public class ClassLoaderInheritance {
 
+    private static final Logger logger = LoggerFactory.getLogger(ClassLoaderInheritance.class);
+
     public static void main(String[] args) {
-        System.out.println(System.getProperty("sun.boot.class.path"));
-        System.out.println(System.getProperty("java.ext.dirs"));
-        System.out.println(System.getProperty("java.class.path"));
+        logger.info(System.getProperty("sun.boot.class.path"));
+        logger.info(System.getProperty("java.ext.dirs"));
+        logger.info(System.getProperty("java.class.path"));
 
         ClassLoader threadClassLoader = Thread.currentThread().getContextClassLoader();
-        System.out.println("Thread.currentThread().getContextClassLoader() " + threadClassLoader);
+        logger.info("Thread.currentThread().getContextClassLoader() " + threadClassLoader);
 
         ClassLoader systemClassLoader = ClassLoader.getSystemClassLoader();
-        System.out.println("ClassLoader.getSystemClassLoader() " + systemClassLoader);
+        logger.info("ClassLoader.getSystemClassLoader() " + systemClassLoader);
 
         ClassLoader classLoader = ClassLoaderInheritance.class.getClassLoader();
-        System.out.println("ClassLoaderInheritance.class.getClassLoader() " + classLoader);
+        logger.info("ClassLoaderInheritance.class.getClassLoader() " + classLoader);
 
-        System.out.println(systemClassLoader == classLoader);
+        logger.info((systemClassLoader == classLoader)+"");
 
         ClassLoader classLoader1 = ZipInfo.class.getClassLoader();//ZipInfo类在ext下,属于ExtClassLoader加载器
-        System.out.println("ZipInfo.class.getClassLoader() " + classLoader1);
+        logger.info("ZipInfo.class.getClassLoader() " + classLoader1);
 
 
         while (systemClassLoader != null) {
-            System.out.println(systemClassLoader.getClass().getCanonicalName());
+            logger.info(systemClassLoader.getClass().getCanonicalName());
             systemClassLoader = systemClassLoader.getParent();
         }
 
