@@ -3,7 +3,7 @@
 
     <Appenders>
         <Console name="console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%style{%d{yyyy-MM-dd HH:mm:ss:SSS}}{green} %style{[%p]}{blue} %style{[%T-%t-%tp]}{yellow} %l %style{%msg%n%throwable}{red}"/>
+            <PatternLayout pattern="%style{%d{ISO8601}}{green} %style{[%p]}{blue} %style{[%T-%t-%tp]}{yellow} %l %style{%msg%n%throwable}{red}"/>
         </Console>
     </Appenders>
 
@@ -11,9 +11,6 @@
         <Root level="debug">
             <AppenderRef ref="console"/>
         </Root>
-        <Logger name="core" level="info" additivity="false">
-            <AppenderRef ref="console"/>
-        </Logger>
     </Loggers>
 
 </Configuration>
