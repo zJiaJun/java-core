@@ -45,14 +45,14 @@ public class PathClassLoader extends ClassLoader {
         return null;
     }
 
-    public static void main(String[] args) throws ClassNotFoundException {
-        PathClassLoader pathClassLoader = new PathClassLoader("/Users/zhujiajun/Work/temp");
-        Class<?> aClass = pathClassLoader.findClass("com.github.zjiajun.java.core.classloader.ClassLoaderInheritance");
+    public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+        String clazzPath = System.getProperty("user.dir") + "/target/classes";
+        PathClassLoader pathClassLoader = new PathClassLoader(clazzPath);
+        String clazz = "com.github.zjiajun.java.core.classloader.DynamicClass";
+        Class<?> aClass = pathClassLoader.findClass(clazz);
         System.out.println(aClass);
-        ClassLoader classLoader = aClass.getClassLoader();
-        while (null != classLoader) {
-            System.out.println(classLoader.getClass().getCanonicalName());
-            classLoader = classLoader.getParent();
-        }
+        //class cast exception
+        DynamicClass dynamicClass = (DynamicClass) aClass.newInstance();
+        System.out.println(dynamicClass);
     }
 }
