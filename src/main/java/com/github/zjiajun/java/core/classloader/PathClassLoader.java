@@ -4,6 +4,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /**
  * @author zhujiajun
@@ -11,16 +13,18 @@ import java.io.InputStream;
  */
 public class PathClassLoader extends ClassLoader {
 
-    private final String path;
+    private final String clazzPath;
 
-    public PathClassLoader(String path) {
-        this.path = path;
+    public PathClassLoader(String clazzPath) {
+        this.clazzPath = clazzPath;
     }
 
-
     @Override
-    protected Class<?> findClass(String name) throws ClassNotFoundException {
-        byte [] classData = getData(name);
+    public Class<?> loadClass(String name) throws ClassNotFoundException {
+        if (name != null && !name.startsWith("com.github.zjiajun")) {
+            return super.loadClass(name);
+        }
+        byte [] classData = getData();
         if (null == classData) {
             throw new ClassNotFoundException();
         } else {
@@ -28,10 +32,19 @@ public class PathClassLoader extends ClassLoader {
         }
     }
 
-    private byte[] getData(String name) {
-        String p = path + File.separatorChar + name.replace('.', File.separatorChar) + ".class";
+    @Override
+    protected Class<?> findClass(String name) throws ClassNotFoundException {
+        byte [] classData = getData();
+        if (null == classData) {
+            throw new ClassNotFoundException();
+        } else {
+            return super.defineClass(name, classData, 0, classData.length);
+        }
+    }
+
+    private byte[] getData() {
         try {
-            InputStream is = new FileInputStream(p);
+            InputStream is = new FileInputStream(clazzPath);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             byte [] buffer = new byte[1024 * 2];
             int len;
@@ -45,14 +58,18 @@ public class PathClassLoader extends ClassLoader {
         return null;
     }
 
-    public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
-        String clazzPath = System.getProperty("user.dir") + "/target/classes";
+    public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException,
+            InstantiationException, NoSuchMethodException, InvocationTargetException {
+        String clazzPath = System.getProperty("user.dir") + "/target/classes/com/github/zjiajun/java/core/classloader/DynamicClass.class";
         PathClassLoader pathClassLoader = new PathClassLoader(clazzPath);
         String clazz = "com.github.zjiajun.java.core.classloader.DynamicClass";
         Class<?> aClass = pathClassLoader.findClass(clazz);
         System.out.println(aClass);
-        //class cast exception
-        DynamicClass dynamicClass = (DynamicClass) aClass.newInstance();
-        System.out.println(dynamicClass);
+//        ClassCastException
+//        DynamicClass dynamicClass = (DynamicClass) aClass.newInstance();
+        Object dynamicObj = aClass.newInstance();
+        Method execMethod = dynamicObj.getClass().getDeclaredMethod("execMethod", String.class, int.class);
+        Object result = execMethod.invoke(dynamicObj, "10", 1);
+        System.out.println(result);
     }
 }

@@ -10,19 +10,19 @@ import org.slf4j.LoggerFactory;
  */
 public class DynamicClass {
 
-//    private static final Logger logger = LoggerFactory.getLogger(DynamicClass.class);
+     private static final Logger logger = LoggerFactory.getLogger("DynamicClass");
 
     static {
-//        logger.info(DynamicClass.class.getCanonicalName() + " static running...");
-        System.out.println(DynamicClass.class.getCanonicalName() + " static running...");
+        logger.info(DynamicClass.class.getCanonicalName() + " static running...");
     }
 
     public DynamicClass() {
-        System.out.println(DynamicClass.class.getCanonicalName() + " constructor running...");
+        logger.info(DynamicClass.class.getCanonicalName() + " constructor running...");
     }
 
     public Integer execMethod(String a, int b) {
+        logger.info("execMethod params {}, {}", a ,b);
         int num = Integer.parseInt(a);
-        return num + b;
+        return num * b;
     }
 }
